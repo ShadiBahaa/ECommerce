@@ -1,6 +1,6 @@
 # E-Commerce System
 
-A comprehensive Java-based e-commerce system that handles product management, shopping cart functionality, and checkout processing with support for both shippable and non-shippable products.
+A basic Java-based e-commerce system that handles product management, shopping cart functionality, and checkout processing with support for both shippable and non-shippable products.
 
 ## Features
 
@@ -14,7 +14,6 @@ A comprehensive Java-based e-commerce system that handles product management, sh
 ## Project Structure
 
 ```
-src/
 ├── Product.java                           # Abstract base class for all products
 ├── PerishableProduct.java                 # Products with expiry dates
 ├── NonPerishableShippableProduct.java     # Non-perishable items requiring shipping
@@ -31,18 +30,18 @@ src/
 ## Product Types
 
 ### 1. Perishable Products
-- Products with expiry dates (e.g., food items)
+- Products with expiry dates
 - Automatically become unavailable after expiry
 - Require shipping
 - Have weight for shipping calculations
 
 ### 2. Non-Perishable Shippable Products
-- Physical products that don't expire (e.g., electronics)
+- Physical products that don't expire 
 - Require shipping
 - Have weight for shipping calculations
 
 ### 3. Non-Perishable Non-Shippable Products
-- Digital or instant products (e.g., gift cards, digital downloads)
+- Digital or instant products
 - No shipping required
 - No weight considerations
 
@@ -99,25 +98,70 @@ The application includes comprehensive test cases covering:
 5. **Expired Products**: Expiry date validation
 6. **Non-shippable Items**: Checkout without shipping fees
 
-## Sample Output
+## Sample Output for test cases
 
 ```
+=== TEST CASE 1: Successful Checkout ===
+Added 2x Cheese to cart
+Added 1x Biscuits to cart
+Added 1x TV to cart
+Added 1x Mobile Scratch Card to cart
+
 === CHECKOUT PROCESS ===
 ** Shipment notice **
-2x Cheese 200.0g
 1x TV 15000.0g
-Total package weight 15.4kg
+1x Biscuits 700.0g
+2x Cheese 200.0g
+Total package weight 16.1kg
+ERROR: Customer's balance is insufficient
+Required: $1036.0, Available: $1000.0
+
+=== TEST CASE 2: Empty Cart ===
+
+=== CHECKOUT PROCESS ===
+ERROR: Cart is empty
+
+=== TEST CASE 3: Insufficient Balance ===
+Added 2x TV to cart
+
+=== CHECKOUT PROCESS ===
+** Shipment notice **
+2x TV 15000.0g
+Total package weight 30.0kg
+ERROR: Customer's balance is insufficient
+Required: $1300.0, Available: $100.0
+
+=== TEST CASE 4: Out of Stock ===
+Cannot add TV - insufficient stock or expired
+
+=== CHECKOUT PROCESS ===
+ERROR: Cart is empty
+
+=== TEST CASE 5: Expired Product ===
+Cannot add Milk - insufficient stock or expired
+
+=== CHECKOUT PROCESS ===
+ERROR: Cart is empty
+
+=== TEST CASE 6: Non-shippable Items Only ===
+Added 5x Mobile Scratch Card to cart
+
+=== CHECKOUT PROCESS ===
 ** Checkout receipt **
-2x Cheese 200
-1x Biscuits 150
-1x TV 500
-1x Mobile Scratch Card 25
+5x Mobile Scratch Card 125
 ----------------------
-Subtotal 875
-Shipping 154
-Amount 1029
-Customer balance after payment: $96.0
+Subtotal 125
+Shipping 0
+Amount 125
+Customer balance after payment: $875.0
 END.
+
+=== FINAL INVENTORY STATUS ===
+Cheese remaining: 10
+Biscuits remaining: 5
+TV remaining: 3
+Scratch Cards remaining: 95
+Customer final balance: $875.0
 ```
 
 ## Requirements
@@ -137,12 +181,6 @@ END.
    java ECommerceApp
    ```
 
-## Design Patterns Used
-
-- **Abstract Factory Pattern**: Product hierarchy with abstract Product class
-- **Strategy Pattern**: Different shipping behaviors for product types
-- **Interface Segregation**: Shippable interface for shipping-specific functionality
-
 ## Error Handling
 
 The system handles various error scenarios:
@@ -160,7 +198,3 @@ The system handles various error scenarios:
 - Discount and coupon system
 - Order history tracking
 - Advanced shipping options (express, overnight, etc.)
-
-## License
-
-This project is available under the MIT License.
