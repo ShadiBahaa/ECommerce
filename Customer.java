@@ -1,5 +1,3 @@
-package com.example.ECommerce;
-
 class Customer {
     private String name;
     private double balance;

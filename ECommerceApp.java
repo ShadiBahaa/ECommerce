@@ -1,4 +1,3 @@
-package com.example.ECommerce;
 import java.time.LocalDate;
 
 public class ECommerceApp {

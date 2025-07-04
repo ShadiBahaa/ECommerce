@@ -1,4 +1,3 @@
-package com.example.ECommerce;
 import java.util.*;
 class ShoppingCart {
     private List<CartItem> items;

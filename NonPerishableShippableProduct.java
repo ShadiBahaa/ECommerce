@@ -1,5 +1,3 @@
-package com.example.ECommerce;
-
 class NonPerishableShippableProduct extends Product implements Shippable {
     private double weight;
     

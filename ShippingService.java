@@ -1,4 +1,3 @@
-package com.example.ECommerce;
 import java.util.*;
 class ShippingService {
     private static final double SHIPPING_RATE_PER_KG = 10.0; // $10 per kg

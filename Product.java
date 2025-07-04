@@ -1,5 +1,3 @@
-package com.example.ECommerce;
-
 abstract class Product {
     protected String name;
     protected double price;
